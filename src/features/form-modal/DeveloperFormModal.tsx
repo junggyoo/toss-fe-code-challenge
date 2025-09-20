@@ -1,7 +1,7 @@
-"use client";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Modal } from "@/features/modal/Modal";
 import { Button } from "@/components/ui/button";
 import { useModalController } from "@/features/modal/controller";
@@ -10,7 +10,7 @@ const EXPERIENCE = ["1년 미만", "1–3년", "4–7년", "8년 이상"] as con
 
 export type ExperienceYears = "1년 미만" | "1–3년" | "4–7년" | "8년 이상";
 
-const makeExperienceSchema = () => {
+const makeExperienceSchema = (): z.ZodType<ExperienceYears> => {
 	const literals = EXPERIENCE.map((v) => z.literal(v)) as [
 		z.ZodLiteral<(typeof EXPERIENCE)[number]>,
 		...z.ZodLiteral<(typeof EXPERIENCE)[number]>[]
@@ -53,7 +53,7 @@ export default function DeveloperFormModal() {
 			experienceYears: undefined,
 			githubUrl: "",
 		},
-		resolver: zodResolver(schema),
+		resolver: zodResolver(schema) as Resolver<DeveloperFormValues>,
 		mode: "onSubmit",
 		reValidateMode: "onChange",
 	});
