@@ -13,7 +13,7 @@ import { useModalController } from "./controller";
 const MetaContext = createContext<{
 	titleId: string;
 	descId: string;
-	initialFocusRef?: React.RefObject<HTMLElement>;
+	initialFocusRef?: React.RefObject<HTMLElement | null>;
 } | null>(null);
 const useMeta = () => {
 	const v = useContext(MetaContext);
@@ -83,7 +83,7 @@ function Content({ children }: { children: React.ReactNode }) {
 			className="fixed left-1/2 top-1/2 w-[min(640px,92vw)] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-6 shadow-lg outline-none data-[state=open]:animate-in data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 motion-reduce:transition-none max-h-[80vh] overflow-auto"
 			onOpenAutoFocus={(e) => {
 				e.preventDefault();
-				(initialFocusRef.current ?? fallbackTitleRef.current)?.focus();
+				(initialFocusRef?.current ?? fallbackTitleRef.current)?.focus();
 			}}
 			onEscapeKeyDown={() => triggerRef.current?.focus()}
 		>
