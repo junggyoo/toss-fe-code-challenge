@@ -66,4 +66,40 @@ test.describe("접근성/스크롤/모션", () => {
 		const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+
+	test("긴 콘텐츠 시 모달 내부 스크롤 동작", async ({ page }) => {
+		await page.goto("/");
+
+		// 기본 모달 열기
+		await page
+			.getByRole("button", { name: /신청 폼 작성하기|Open Modal/i })
+			.click();
+
+		// 모달이 열렸는지 확인
+		await expect(page.getByRole("dialog")).toBeVisible();
+
+		// 배경이 스크롤되지 않는지 확인
+		const bodyOverflow = await page.evaluate(
+			() => document.body.style.overflow
+		);
+		expect(bodyOverflow).toBe("hidden");
+
+		// 모달 콘텐츠가 뷰포트 내에 제한되는지 확인 (max-h-[80vh])
+		const modalContent = page.locator('[role="dialog"]');
+		const modalHeight = await modalContent.evaluate((el) => el.clientHeight);
+		const viewportHeight = await page.evaluate(() => window.innerHeight);
+
+		// 모달이 뷰포트의 80% 이하인지 확인
+		expect(modalHeight).toBeLessThanOrEqual(viewportHeight * 0.8);
+
+		// ESC로 닫기
+		await page.keyboard.press("Escape");
+		await expect(page.getByRole("dialog")).toHaveCount(0);
+
+		// 배경 스크롤 복구 확인
+		const bodyOverflowAfter = await page.evaluate(
+			() => document.body.style.overflow
+		);
+		expect(bodyOverflowAfter).toBe("");
+	});
 });

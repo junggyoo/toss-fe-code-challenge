@@ -62,7 +62,7 @@ type Props = {
 	onOpenChange: (open: boolean) => void;
 	onResolve: (value: FormValues | null) => void;
 	options?: OpenFormModalOptions;
-	triggerRef: RefObject<HTMLElement>;
+	triggerRef: RefObject<HTMLElement | null>;
 };
 
 export function ImperativeFormModal({
@@ -210,7 +210,7 @@ export function ImperativeFormModal({
 								{...register("name")}
 								aria-invalid={!!errors.name}
 								aria-describedby={errors.name ? "error-name" : undefined}
-								className="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none ring-0 focus:border-blue-600"
+								className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 outline-none ring-0 focus:border-primary focus:ring-2 focus:ring-primary/20"
 							/>
 							{errors.name && (
 								<p
@@ -236,7 +236,7 @@ export function ImperativeFormModal({
 								{...register("email")}
 								aria-invalid={!!errors.email}
 								aria-describedby={errors.email ? "error-email" : undefined}
-								className="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none ring-0 focus:border-blue-600"
+								className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 outline-none ring-0 focus:border-primary focus:ring-2 focus:ring-primary/20"
 							/>
 							{errors.email && (
 								<p
@@ -263,7 +263,7 @@ export function ImperativeFormModal({
 								aria-describedby={
 									errors.experienceYears ? "error-exp" : undefined
 								}
-								className="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none ring-0 focus:border-blue-600"
+								className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 outline-none ring-0 focus:border-primary focus:ring-2 focus:ring-primary/20"
 								defaultValue={""}
 							>
 								<option value="" disabled>
@@ -300,7 +300,7 @@ export function ImperativeFormModal({
 								{...register("githubUrl")}
 								aria-invalid={!!errors.githubUrl}
 								aria-describedby={errors.githubUrl ? "error-github" : undefined}
-								className="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none ring-0 focus:border-blue-600"
+								className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 outline-none ring-0 focus:border-primary focus:ring-2 focus:ring-primary/20"
 							/>
 							{errors.githubUrl && (
 								<p
@@ -321,7 +321,7 @@ export function ImperativeFormModal({
 							</Dialog.Close>
 							<Button
 								type="submit"
-								className="bg-blue-600 hover:bg-blue-700 text-white"
+								className="bg-primary hover:bg-primary/90 text-primary-foreground"
 							>
 								제출하기
 							</Button>
