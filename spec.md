@@ -12,6 +12,27 @@
 - **디자인 톤앤매너**: 이미지와 유사한 블루 톤
 - **동시 호출 정책**: 모달 열림 중 재호출은 무시
 
+## 기술 스택(현재 package.json 기준)
+
+- **Runtime/UI**: React ^19, React DOM ^19
+- **빌드/개발**: Vite ^7, @vitejs/plugin-react ^5, TypeScript ~5.8
+- **스타일**: TailwindCSS ^4 + @tailwindcss/vite, tailwind-merge ^3, class-variance-authority ^0.7, clsx ^2, modern-normalize ^3
+- **접근성/UI 프리미티브**: @radix-ui/react-dialog, @radix-ui/react-label, @radix-ui/react-slot, @radix-ui/react-visually-hidden
+- **폼/검증**: react-hook-form ^7, zod ^4, @hookform/resolvers ^5
+- **아이콘**: lucide-react
+- **오버레이 유틸(보유)**: overlay-kit (기본 구현에선 사용하지 않음)
+- **애니메이션(선택)**: tw-animate-css (Tailwind 트랜지션/키프레임으로 대체 가능)
+
+> 원칙: 현재 패키지만 사용해 구현한다. 추가 라이브러리가 필요하면 사전 질의 후 합의하여 추가한다.
+
+## 패키지 사용 계획
+
+- **모달/포커스 트랩/포털**: Radix Dialog를 기본 사용(ESC/오버레이 닫기, 포커스 트랩, aria 연결). overlay-kit은 사용하지 않음.
+- **폼 상태/검증**: react-hook-form + zod 스키마, @hookform/resolvers로 연결. 오류는 `role="alert"`/`aria-live="assertive"`로 발표.
+- **스타일/테마**: Tailwind 유틸리티와 지정 블루 톤 토큰 사용. `tailwind-merge`, `clsx`, `cva`로 변형/상태 클래스 관리.
+- **아이콘**: 필요 시 lucide-react(예: 입력 필드 보조), 기본 닫기 아이콘은 비표시.
+- **모션**: Tailwind transition/transform 사용. `prefers-reduced-motion` 고려. tw-animate-css는 선택적.
+
 ## 목표
 
 - 접근성 표준에 따른 모달 다이얼로그 동작 보장 (ARIA, 포커스 트랩, ESC/오버레이 닫기)
