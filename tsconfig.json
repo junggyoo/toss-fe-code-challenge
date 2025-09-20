@@ -9,6 +9,7 @@
 		"strict": true,
 		"verbatimModuleSyntax": true,
 		"baseUrl": ".",
+		"types": ["vitest", "@testing-library/jest-dom"],
 		"paths": {
 			"@/*": ["./src/*"]
 		}
