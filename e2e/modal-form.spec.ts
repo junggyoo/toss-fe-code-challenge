@@ -14,7 +14,9 @@ test.describe("모달 기본 동작", () => {
 		await page.keyboard.press("Escape");
 		await expect(page.getByRole("dialog")).toHaveCount(0);
 		await expect(
-			page.getByRole("button", { name: /기본 폼 열기|신청 폼 작성하기|Open Modal/i })
+			page.getByRole("button", {
+				name: /기본 폼 열기|신청 폼 작성하기|Open Modal/i,
+			})
 		).toBeFocused();
 
 		await openModal({ page });
@@ -72,7 +74,9 @@ test.describe("접근성/스크롤/모션", () => {
 
 		// 기본 모달 열기
 		await page
-			.getByRole("button", { name: /기본 폼 열기|신청 폼 작성하기|Open Modal/i })
+			.getByRole("button", {
+				name: /기본 폼 열기|신청 폼 작성하기|Open Modal/i,
+			})
 			.click();
 
 		// 모달이 열렸는지 확인
