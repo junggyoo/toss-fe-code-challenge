@@ -1,16 +1,18 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { OverlayProvider } from "overlay-kit";
-import DeveloperFormModal from "@/features/form-modal/DeveloperFormModal";
+import userEvent from "@testing-library/user-event";
+import { render, screen, waitFor } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+
 import {
 	ModalControllerProvider,
 	type ModalController,
 } from "@/features/modal/controller";
-import type { FormValues } from "@/features/form-modal/types";
+import DeveloperFormModal from "@/features/form-modal/DeveloperFormModal";
+import type { DeveloperFormValues } from "@/features/form-modal/DeveloperFormModal";
 
-// Mock controller
-const createMockController = (overrides = {}): ModalController<FormValues> => ({
+const createMockController = (
+	overrides = {}
+): ModalController<DeveloperFormValues> => ({
 	open: true,
 	setOpen: vi.fn(),
 	triggerRef: { current: null },

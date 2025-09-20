@@ -1,16 +1,20 @@
 import { useState } from "react";
 
-import type { FormValues } from "@/features/form-modal/types";
-import { openDeveloperFormModal } from "@/features/form-modal/useDeveloperFormModal";
+import { useDeveloperFormModal } from "@/features/form-modal/useDeveloperFormModal";
 
 import { Button } from "./components/ui/button";
+import type { DeveloperFormValues } from "./features/form-modal/DeveloperFormModal";
 
 const ModalFormPage = () => {
-	const [lastResult, setLastResult] = useState<FormValues | null>(null);
+	const [lastResult, setLastResult] = useState<DeveloperFormValues | null>(
+		null
+	);
+
+	const { openDeveloperFormModal } = useDeveloperFormModal();
 
 	const handleModalFormOpen = async () => {
 		const result = await openDeveloperFormModal();
-		setLastResult(result as any);
+		setLastResult(result as DeveloperFormValues);
 	};
 
 	return (

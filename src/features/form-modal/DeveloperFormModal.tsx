@@ -8,6 +8,8 @@ import { useModalController } from "@/features/modal/controller";
 
 const EXPERIENCE = ["1년 미만", "1–3년", "4–7년", "8년 이상"] as const;
 
+export type ExperienceYears = "1년 미만" | "1–3년" | "4–7년" | "8년 이상";
+
 const makeExperienceSchema = () => {
 	const literals = EXPERIENCE.map((v) => z.literal(v)) as [
 		z.ZodLiteral<(typeof EXPERIENCE)[number]>,
@@ -40,18 +42,18 @@ const schema = z.object({
 		}),
 });
 
-type Values = z.infer<typeof schema>;
+export type DeveloperFormValues = z.infer<typeof schema>;
 
 export default function DeveloperFormModal() {
-	const controller = useModalController<Values>();
-	const form = useForm<Values>({
+	const controller = useModalController<DeveloperFormValues>();
+	const form = useForm<DeveloperFormValues>({
 		defaultValues: {
 			name: "",
 			email: "",
-			experienceYears: "" as any,
+			experienceYears: undefined,
 			githubUrl: "",
 		},
-		resolver: zodResolver(schema) as any,
+		resolver: zodResolver(schema),
 		mode: "onSubmit",
 		reValidateMode: "onChange",
 	});
@@ -59,8 +61,10 @@ export default function DeveloperFormModal() {
 	const handleSubmit = form.handleSubmit(
 		(v) => controller.resolve(v),
 		() => {
-			const keys = Object.keys(form.formState.errors) as Array<keyof Values>;
-			if (keys[0]) form.setFocus(keys[0] as any);
+			const keys = Object.keys(form.formState.errors) as Array<
+				keyof DeveloperFormValues
+			>;
+			if (keys[0]) form.setFocus(keys[0]);
 		}
 	);
 

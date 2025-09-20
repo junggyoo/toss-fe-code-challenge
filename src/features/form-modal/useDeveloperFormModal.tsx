@@ -1,5 +1,5 @@
-"use client";
 import { openOverlay } from "@/features/modal/OverlayService";
+
 import DeveloperFormModal from "./DeveloperFormModal";
 
 export const useDeveloperFormModal = () => {
@@ -7,7 +7,3 @@ export const useDeveloperFormModal = () => {
 		openOverlay(() => <DeveloperFormModal />);
 	return { openDeveloperFormModal };
 };
-
-export function openDeveloperFormModal() {
-	return openOverlay(() => <DeveloperFormModal />);
-}
