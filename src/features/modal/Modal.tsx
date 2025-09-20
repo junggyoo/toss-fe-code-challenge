@@ -1,4 +1,3 @@
-"use client";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import React, {
@@ -8,6 +7,7 @@ import React, {
 	useId,
 	useRef,
 } from "react";
+
 import { useModalController } from "./controller";
 
 const MetaContext = createContext<{

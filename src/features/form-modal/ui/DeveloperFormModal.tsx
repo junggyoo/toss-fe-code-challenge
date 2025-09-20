@@ -12,6 +12,7 @@ import {
 
 export default function DeveloperFormModal() {
 	const controller = useModalController<DeveloperFormValues>();
+
 	const form = useForm<DeveloperFormValues>({
 		defaultValues: {
 			name: "",

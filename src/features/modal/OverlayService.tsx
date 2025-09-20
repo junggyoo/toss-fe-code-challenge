@@ -1,5 +1,5 @@
-"use client";
 import { overlay } from "overlay-kit";
+
 import { ModalControllerProvider, type ModalController } from "./controller";
 
 export function openOverlay<T>(
