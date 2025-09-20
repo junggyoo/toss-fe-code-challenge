@@ -189,10 +189,7 @@ export function ImperativeFormModal({
 						>
 							{title}
 						</h2>
-						<p
-							id="modalDesc"
-							className="text-sm text-gray-600"
-						>
+						<p id="modalDesc" className="text-sm text-gray-600">
 							{description}
 						</p>
 					</div>

@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { Button } from "./components/ui/button";
-import { openFormModal } from "@/features/form-modal/openFormModal";
 import type { FormValues } from "@/features/form-modal/types";
+import { openDeveloperFormModal } from "@/features/form-modal/useDeveloperFormModal";
 
 const ModalFormPage = () => {
 	const [lastResult, setLastResult] = useState<FormValues | null>(null);
 
 	const handleModalFormOpen = async () => {
-		const result = await openFormModal({
-			title: "개발자 신청 폼",
-			description: "프론트엔드 개발자 지원을 위한 정보를 입력해주세요.",
-		});
-		setLastResult(result);
+		console.log("handleModalFormOpen 호출됨");
+		try {
+			const result = await openDeveloperFormModal();
+			console.log("모달 결과:", result);
+			setLastResult(result as any);
+		} catch (error) {
+			console.error("모달 오픈 에러:", error);
+		}
 	};
 
 	return (

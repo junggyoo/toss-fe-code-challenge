@@ -1,0 +1,41 @@
+# Page snapshot
+
+```yaml
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - heading "접근성 친화적 모달 폼" [level=1] [ref=e6]
+      - paragraph [ref=e7]: WCAG 2.2 AA 가이드라인을 준수하는 완전한 접근성 모달 폼
+      - paragraph [ref=e8]: 키보드 내비게이션, 스크린리더 지원, 포커스 트랩 완벽 구현
+    - generic [ref=e10]:
+      - heading "기본 모달 폼" [level=2] [ref=e11]
+      - paragraph [ref=e12]: 표준 신청 폼으로 이름, 이메일, 경력 연차를 입력받습니다.
+      - button "기본 폼 열기" [active] [ref=e13]
+    - generic [ref=e14]:
+      - heading "🔧 접근성 기능" [level=2] [ref=e15]
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - heading "키보드 내비게이션" [level=3] [ref=e18]
+          - list [ref=e19]:
+            - listitem [ref=e20]:
+              - text: •
+              - generic [ref=e21]: Tab
+              - text: /
+              - generic [ref=e22]: Shift+Tab
+              - text: 포커스 순환
+            - listitem [ref=e23]:
+              - text: •
+              - generic [ref=e24]: ESC
+              - text: 모달 닫기
+            - listitem [ref=e25]:
+              - text: •
+              - generic [ref=e26]: Enter
+              - text: 폼 제출
+        - generic [ref=e27]:
+          - heading "스크린리더 지원" [level=3] [ref=e28]
+          - list [ref=e29]:
+            - listitem [ref=e30]: • 모달 열림 시 제목으로 포커스 이동
+            - listitem [ref=e31]: • 검증 오류 즉시 발표
+            - listitem [ref=e32]: • ARIA 속성 완벽 연결
+    - paragraph [ref=e34]: Made with ❤️ using React, TypeScript, Radix UI, and TailwindCSS
+```
