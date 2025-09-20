@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { useDeveloperFormModal } from "@/features/form-modal/useDeveloperFormModal";
+import { useDeveloperFormModal } from "@/features/form-modal/hooks/useDeveloperFormModal";
 
 import { Button } from "./components/ui/button";
-import type { DeveloperFormValues } from "./features/form-modal/DeveloperFormModal";
+import type { DeveloperFormValues } from "@/features/form-modal/models/developer-form-shema";
 
 const ModalFormPage = () => {
 	const [lastResult, setLastResult] = useState<DeveloperFormValues | null>(

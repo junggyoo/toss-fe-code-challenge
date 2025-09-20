@@ -7,8 +7,8 @@ import {
 	ModalControllerProvider,
 	type ModalController,
 } from "@/features/modal/controller";
-import DeveloperFormModal from "@/features/form-modal/DeveloperFormModal";
-import type { DeveloperFormValues } from "@/features/form-modal/DeveloperFormModal";
+import DeveloperFormModal from "@/features/form-modal/ui/DeveloperFormModal";
+import type { DeveloperFormValues } from "@/features/form-modal/models/developer-form-shema";
 
 const createMockController = (
 	overrides = {}
