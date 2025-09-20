@@ -4,7 +4,7 @@ import { createContext, useContext, type RefObject } from "react";
 export type ModalController<T = unknown> = {
 	open: boolean;
 	setOpen: (open: boolean) => void;
-	triggerRef: RefObject<HTMLElement>;
+	triggerRef: RefObject<HTMLElement | null>;
 	resolve: (value: T) => void;
 	close: () => void;
 };

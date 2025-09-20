@@ -6,11 +6,3 @@ export type FormValues = {
 	experienceYears: ExperienceYears;
 	githubUrl?: string;
 };
-
-export type OpenFormModalOptions = {
-	title?: string;
-	description?: string;
-	initialValues?: Partial<FormValues>;
-	validateEmailPattern?: RegExp;
-	experienceOptions?: ExperienceYears[];
-};

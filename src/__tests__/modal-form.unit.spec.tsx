@@ -3,7 +3,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OverlayProvider } from "overlay-kit";
 import DeveloperFormModal from "@/features/form-modal/DeveloperFormModal";
-import { ModalControllerProvider, type ModalController } from "@/features/modal/controller";
+import {
+	ModalControllerProvider,
+	type ModalController,
+} from "@/features/modal/controller";
 import type { FormValues } from "@/features/form-modal/types";
 
 // Mock controller
@@ -147,11 +150,15 @@ describe("DeveloperFormModal", () => {
 
 		const select = screen.getByLabelText(/FE 경력 연차/i);
 		expect(select).toBeInTheDocument();
-		
+
 		// 기본 옵션들이 있는지 확인
-		expect(screen.getByRole("option", { name: "1년 미만" })).toBeInTheDocument();
+		expect(
+			screen.getByRole("option", { name: "1년 미만" })
+		).toBeInTheDocument();
 		expect(screen.getByRole("option", { name: "1–3년" })).toBeInTheDocument();
 		expect(screen.getByRole("option", { name: "4–7년" })).toBeInTheDocument();
-		expect(screen.getByRole("option", { name: "8년 이상" })).toBeInTheDocument();
+		expect(
+			screen.getByRole("option", { name: "8년 이상" })
+		).toBeInTheDocument();
 	});
 });
