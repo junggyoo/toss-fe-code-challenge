@@ -7,14 +7,8 @@ const ModalFormPage = () => {
 	const [lastResult, setLastResult] = useState<FormValues | null>(null);
 
 	const handleModalFormOpen = async () => {
-		console.log("handleModalFormOpen 호출됨");
-		try {
-			const result = await openDeveloperFormModal();
-			console.log("모달 결과:", result);
-			setLastResult(result as any);
-		} catch (error) {
-			console.error("모달 오픈 에러:", error);
-		}
+		const result = await openDeveloperFormModal();
+		setLastResult(result as any);
 	};
 
 	return (
