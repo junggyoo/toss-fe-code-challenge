@@ -18,11 +18,8 @@ test.describe("모달 기본 동작", () => {
 		).toBeFocused();
 
 		await openModal({ page });
-		await page
-			.locator('div[role="dialog"]')
-			.click({ position: { x: -10, y: -10 } })
-			.catch(() => {});
-		await page.mouse.click(10, 10);
+		// 오버레이 클릭: 다이얼로그 바깥 영역을 클릭하도록 body 클릭
+		await page.click("body", { position: { x: 10, y: 10 } });
 		await expect(page.getByRole("dialog")).toHaveCount(0);
 	});
 });
@@ -40,9 +37,11 @@ test.describe("폼 검증/제출", () => {
 	test("필수 미입력 시 에러 발표 및 첫 오류 포커스", async ({ page }) => {
 		await openModal({ page });
 		await page.getByRole("button", { name: /제출하기|Submit/i }).click();
-		await expect(page.getByText(/이름|닉네임|입력해 주세요/)).toBeVisible();
+		await expect(
+			page.getByText("이름 또는 닉네임을 입력해 주세요.")
+		).toBeVisible();
 		await expect(page.getByText(/유효한 이메일/)).toBeVisible();
-		await expect(page.getByText(/경력 연차/)).toBeVisible();
+		await expect(page.getByText("FE 경력 연차를 선택해 주세요.")).toBeVisible();
 	});
 
 	test("유효 입력 시 resolve(FormValues) 및 닫힘", async ({ page }) => {
@@ -51,7 +50,11 @@ test.describe("폼 검증/제출", () => {
 		await page.getByLabel(/이메일/i).fill("test@test.com");
 		await page
 			.getByLabel(/FE 경력 연차/i)
-			.selectOption({ label: /4–7년|4-7년/ });
+			.selectOption({ label: "4–7년" })
+			.catch(async () => {
+				// 대시가 다른 환경을 대비
+				await page.getByLabel(/FE 경력 연차/i).selectOption({ label: "4-7년" });
+			});
 		await page.getByRole("button", { name: /제출하기|Submit/i }).click();
 		await expect(page.getByRole("dialog")).toHaveCount(0);
 	});

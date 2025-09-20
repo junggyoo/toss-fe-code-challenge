@@ -1,4 +1,5 @@
 import { Button } from "./components/ui/button";
+import { openFormModal } from "@/features/form-modal/openFormModal";
 
 const ModalFormPage = () => {
 	const handleModalFormOpen = async () => {
@@ -6,9 +7,14 @@ const ModalFormPage = () => {
 	};
 
 	return (
-		<div>
-			ModalFormPage
-			<Button onClick={handleModalFormOpen}>Open Modal</Button>
+		<div className="grid min-h-dvh place-items-center p-6">
+			<h1 className="sr-only">접근성 모달 폼 데모</h1>
+			<Button
+				onClick={handleModalFormOpen}
+				className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-lg rounded-xl"
+			>
+				신청 폼 작성하기
+			</Button>
 		</div>
 	);
 };
