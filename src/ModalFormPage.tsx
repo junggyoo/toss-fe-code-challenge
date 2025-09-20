@@ -5,7 +5,6 @@ import type { FormValues } from "@/features/form-modal/types";
 
 const ModalFormPage = () => {
 	const [lastResult, setLastResult] = useState<FormValues | null>(null);
-	
 
 	const handleModalFormOpen = async () => {
 		const result = await openFormModal({

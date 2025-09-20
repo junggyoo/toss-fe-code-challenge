@@ -1,4 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { useForm, type Resolver } from "react-hook-form";
 import { z, type ZodType } from "zod";
@@ -166,6 +167,8 @@ export function ImperativeFormModal({
 				<Dialog.Content
 					role="dialog"
 					aria-modal="true"
+					aria-labelledby="modalTitle"
+					aria-describedby="modalDesc"
 					className="fixed left-1/2 top-1/2 w-[min(640px,92vw)] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-6 shadow-lg outline-none data-[state=open]:animate-in data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 motion-reduce:transition-none max-h-[80vh] overflow-auto"
 					onOpenAutoFocus={(e) => {
 						e.preventDefault();
@@ -173,23 +176,25 @@ export function ImperativeFormModal({
 						titleRef.current?.focus();
 					}}
 				>
+					<VisuallyHidden.Root>
+						<Dialog.Title>접근성 모달</Dialog.Title>
+						<Dialog.Description>폼 입력을 위한 모달입니다.</Dialog.Description>
+					</VisuallyHidden.Root>
 					<div className="space-y-1">
-						<Dialog.Title asChild>
-							<h2
-								ref={titleRef}
-								tabIndex={-1}
-								id="modalTitle"
-								className="text-2xl font-extrabold tracking-tight focus:outline-none"
-							>
-								{title}
-							</h2>
-						</Dialog.Title>
-						<Dialog.Description
+						<h2
+							ref={titleRef}
+							id="modalTitle"
+							className="text-2xl font-extrabold tracking-tight focus:outline-none"
+							tabIndex={-1}
+						>
+							{title}
+						</h2>
+						<p
 							id="modalDesc"
 							className="text-sm text-gray-600"
 						>
 							{description}
-						</Dialog.Description>
+						</p>
 					</div>
 
 					<form
